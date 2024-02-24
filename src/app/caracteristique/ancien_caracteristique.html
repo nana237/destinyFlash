@@ -1,0 +1,185 @@
+
+<!--
+<img src="http://localhost:8000{{selectedCaracteristique.photoCaract}}" alt="{{selectedCaracteristique.couleurCaract}}">
+
+-->
+
+
+
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter une carctéristique</button>
+<div *ngIf="formVisible">
+<form id="formArticle">
+    <h1> {{labelDuForm}} {{selectedCaracteristique.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedCaracteristique.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="couleurCaract">
+            couleur
+        </label>
+        <input type="text" (change)="onCouleurChanged($event)" id="couleurCaract" [(ngModel)]="selectedCaracteristique.couleurCaract" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="photoCaract">
+          photo
+        </label>
+        <!--
+        <input type="text" id="photoCaract" [(ngModel)]="selectedCaracteristique.photoCaract" [ngModelOptions]="{standalone: true}">
+          
+        -->
+        <input type="file" (change)="onphotoCaractChanged($event)" id="photoCaract" [(ngModel)]="selectedCaracteristique.photoCaract" [ngModelOptions]="{standalone: true}">
+
+    </div>
+    <div>
+        <label for="tailleCaract">
+            taille
+        </label>
+        <input type="text" id="tailleCaract" [(ngModel)]="selectedCaracteristique.tailleCaract" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="autreDetailCaract">
+            autre détail
+        </label>
+        <textarea cols="30" rows="10" id="autreDetailCaract" [(ngModel)]="selectedCaracteristique.autreDetailCaract" [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+    <div>
+        <label for="prixCaract">
+            prix
+        </label>
+        <input type="text" id="prixCaract" [(ngModel)]="selectedCaracteristique.prixCaract" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="qteCaract">
+          quantité
+        </label>
+        <input type="text" id="qteCaract" [(ngModel)]="selectedCaracteristique.qteCaract" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="nbAchatCaract">
+          nombre d'achat
+        </label>
+        <input type="text" id="nbAchatCaract" [(ngModel)]="selectedCaracteristique.nbAchatCaract" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="article">
+            article
+        </label>
+        <!--
+        <input type="text" id="article" [(ngModel)]="selectedCaracteristique.article" [ngModelOptions]="{standalone: true}">
+
+        -->
+        
+        <select  id="article" [(ngModel)]="selectedCaracteristique.article" [ngModelOptions]="{standalone: true}">
+          <option ></option>
+          <option *ngFor="let article of articles" value={{article.id}}> {{article.designationAr}} </option>
+        </select>
+      </div>
+    
+
+    <button *ngIf="modifierVisible" (click)="modifierCaract()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="creerVisible" (click)="creerCaract()" mat-raised-button color = "accent">Ajouter</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+
+    <!--
+      <div id="photoCaractticle" *ngIf="formPhotovisibe">
+      <img src="http://localhost:8000{{selectedCaracteristique.photoCaract}}" alt="{{selectedCaracteristique.couleurCaract}}">
+    </div>
+    -->
+    
+  </form>
+
+</div>
+
+<!-- ************************************ detail sur l'artilce ***************************************-->
+
+<div class="detail" *ngIf="detailvisible">
+     <div id="blockDetail">
+      <p>id: {{selectedCaracteristique.id}}</p>
+      <p>couleurCaract:{{selectedCaracteristique.couleurCaract}}</p>
+      <p>photoCaract:{{selectedCaracteristique.photoCaract}}</p>
+      <p>tailleCaract:{{selectedCaracteristique.tailleCaract}}</p>
+      <p>autreDetailCaract:{{selectedCaracteristique.autreDetailCaract}}</p>
+      <p>prixCaract :{{selectedCaracteristique.prixCaract}}</p>
+      <p>qteCaract:{{selectedCaracteristique.qteCaract}}</p>
+      <p>nbAchatCaract:{{selectedCaracteristique.nbAchatCaract}}</p>
+      <p>article:{{selectedCaracteristique.article}}</p>
+      <p>
+      <button (click)="fermerDetail()" mat-raised-button color="accent" >FERMER</button>
+        
+      </p>
+     </div>
+     <div id="blockPhotoDetail">
+       pas cool
+      <img mat-card-image class="center-block" src= "http://localhost:8000{{selectedCaracteristique.photoCaract}}"  alt={{selectedCaracteristique.couleurCaract}}>
+      vraiment pas cool
+     </div>
+
+</div>
+
+<!-- **************************  liste d'article tableau  ***************************************** -->
+<div class="Article Prestataire">
+  <table>
+    <tr>
+      <td>id</td>
+      <td>couleur</td>
+      <td>taille</td>
+      <td>prix</td>
+      <td>quantité</td>
+      <td>nombre d'achat</td>
+      <td>article</td>
+      <td>nom de l'article</td>
+      
+
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr *ngFor="let caracteristique of caracteristiques">
+      <td>{{caracteristique.id}} </td>
+      <td>{{caracteristique.couleurCaract}}</td>
+      <td>{{caracteristique.tailleCaract}}</td>
+      <td>{{caracteristique.prixCaract}}</td>
+      <td>{{caracteristique.qteCaract}}</td>
+      <td>{{caracteristique.nbAchatCaract}}</td>
+      <td>{{caracteristique.article}}</td>
+      <td>{{caracteristique.designationAr}}</td>
+      <td><button (click)="showFormModifier(caracteristique)" mat-raised-button color="accent" >MODIFIER</button></td>
+      <td><button (click)="supprimerCaract(caracteristique)" mat-raised-button color="accent" >SUPRIMER</button></td>
+      <td><button (click)="showDetail(caracteristique)" mat-raised-button color="accent" >DETAIL</button></td>
+      
+    </tr>
+  </table>
+</div>
+
+<div class="container" style="margin-top: 15px; border: 1px solid black">
+    <h2>Les produits de la semaines</h2>
+
+     <div *ngFor="let caracteristique of caracteristiques" class=" col-xs-6 col-sm-6 col-md-4 col-lg-4 " style="display: inline-block; margin-top: 5px; margin-bottom: 5px">
+       <mat-card class="example-card">
+         
+         <mat-card-header class="center-block imgMat">
+          
+             <img mat-card-image class="center-block" src= "http://localhost:8000{{caracteristique.photoCaract}}"  alt={{caracteristique.couleurCaract}}>
+           
+         </mat-card-header>
+           
+         <mat-card-content>
+           <p>
+             {{caracteristique.couleurCaract}} <br>
+             quantité: {{caracteristique.autreDetailCaract}}
+             article : {{caracteristique.article}}
+           </p>
+         </mat-card-content>
+         <mat-card-actions >
+           <button  mat-raised-button color="accent" >AJOUTER AU PANIER</button><br><br>
+           <!--
+              <span class="espace"></span>
+           -->
+           <button mat-raised-button >ACHETER MAINTENANT</button>
+         </mat-card-actions>
+       </mat-card>
+     </div>
+   </div>

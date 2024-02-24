@@ -1,0 +1,25 @@
+.caseImg{
+    width:50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.indicationImg{
+    display: inline-block;
+}
+
+#choixActuelle{
+    display: inline-block;
+}
+
+#detail_panier_client{
+    display: inline-block;
+}
+
+.title-class{
+    z-index: 999999999;
+    color: red;
+    background-color: red;
+    border: 1px solid red;
+   /*  color:rgba(21, 22, 22, 0.8); */
+}

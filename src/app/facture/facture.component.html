@@ -1,0 +1,62 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter une facture</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedfacture.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedfacture.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="dateF">
+            date
+        </label>
+        <input type="date" id="dateF" [(ngModel)]="selectedfacture.dateF" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="montantF">
+            montant
+        </label>
+        <input type="text" id="montantF" [(ngModel)]="selectedfacture.montantF" [ngModelOptions]="{standalone: true}">
+    </div>
+      <div>
+  <label for="commande">
+    commande
+  </label>
+  <!--
+  <input type="text" id="commande" [(ngModel)]="selectedfacture.commande" [ngModelOptions]="{standalone: true}">
+
+  -->
+  <select name="commande" id="commande" [(ngModel)]="selectedfacture.commande" [ngModelOptions]="{standalone: true}">
+      <option value=""></option>
+      <option *ngFor="let commande of commandes" value="{{commande.id}}">{{commande.libCmd}}</option>
+  </select>
+</div>
+
+
+    <button *ngIf="modifierVisible" (click)="modifierFacture()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerFacture()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>date</td>
+        <td>montant</td>
+        <td>commande</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let facture of factures'>
+        <td>{{facture.id}}</td>
+        <td>{{facture.dateF}} </td>
+        <td>{{facture.montantF}} Fcfa</td>
+        <td>{{facture.commande2.libCmd}} </td>
+        <td><button (click)="showFormModifier(facture)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerFacture(facture)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

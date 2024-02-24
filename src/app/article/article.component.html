@@ -1,0 +1,400 @@
+<!--
+<button (click)="essais()">essais</button>
+
+-->
+<!--
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un article</button>
+
+-->
+<div *ngIf="formVisible">
+<form id="formArticle">
+    <h1> {{labelDuForm}} {{selectedArticle.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedArticle.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="designationAr">
+          designation
+        </label>
+        <input type="text" (change)="onDesignationChanged($event)" id="designationAr" [(ngModel)]="selectedArticle.designationAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="photoAr">
+          photo
+        </label>
+        <!--
+        <input type="text" id="photoAr" [(ngModel)]="selectedArticle.photoAr" [ngModelOptions]="{standalone: true}">
+          
+        -->
+        <input type="file" (change)="onPhotoArChanged($event)" id="photoAr" [(ngModel)]="selectedArticle.photoAr" [ngModelOptions]="{standalone: true}">
+
+    </div>
+    <div>
+        <label for="prixAr">
+          prix
+        </label>
+        <input type="text" id="prixAr" [(ngModel)]="selectedArticle.prixAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="qteAr">
+          quantité en stock
+        </label>
+        <input type="text" id="qteAr" [(ngModel)]="selectedArticle.qteAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="StockSecuriteAr">
+          Stock de sécurite
+        </label>
+        <input type="text" id="StockSecuriteAr" [(ngModel)]="selectedArticle.StockSecuriteAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="VideoPubAr">
+          Video de publicité
+        </label>
+        <input type="text" id="VideoPubAr" [(ngModel)]="selectedArticle.VideoPubAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="nbAchatAr">
+          nombre d'achat
+        </label>
+        <input type="text" id="nbAchatAr" [(ngModel)]="selectedArticle.nbAchatAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="sous_categorie">
+          sous catégorie
+        </label>
+        <!--
+        <input type="text" id="sous_categorie" [(ngModel)]="selectedArticle.sous_categorie" [ngModelOptions]="{standalone: true}">
+
+        -->
+        
+        <select  id="sous_categorie" [(ngModel)]="selectedArticle.sous_categorie" [ngModelOptions]="{standalone: true}">
+          <option ></option>
+          <option *ngFor="let sous_categorie of sous_categories" value={{sous_categorie.id}}> {{sous_categorie.libSCat}} </option>
+        </select>
+      </div>
+    <div>
+        <label for="marque">
+          marque
+        </label>
+        <!--
+        <input type="text" id="marque" [(ngModel)]="selectedArticle.marque" [ngModelOptions]="{standalone: true}">
+
+        -->
+        <select id="marque" [(ngModel)]="selectedArticle.marque" [ngModelOptions]="{standalone: true}">
+            <option ></option>
+          <option *ngFor="let marque of marques" value={{marque.id}} > {{marque.libMarq}} </option>
+        </select>
+      </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierArticle()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="creerVisible" (click)="creerArticle()" mat-raised-button color = "accent">Ajouter</button>
+    <button *ngIf="annulerVisible" (click)="annulerArticle()" mat-raised-button >Annuler</button>
+
+    <!--
+      <div id="photoArticle" *ngIf="formPhotovisibe">
+      <img src="http://localhost:8000{{selectedArticle.photoAr}}" alt="{{selectedArticle.designationAr}}">
+    </div>
+    -->
+    
+  </form>
+
+</div>
+
+<!-- ************************************ detail sur l'artilce ***************************************-->
+
+
+
+<div class="detail" *ngIf="detailvisible">
+     <div id="blockDetail">
+      <p>id: {{selectedArticle.id}}</p>
+      <p>designationAr:{{selectedArticle.designationAr}}</p>
+      <p>photoAr:{{selectedArticle.photoAr}}</p>
+      <p>prixAr:{{selectedArticle.prixAr}}</p>
+      <p>qteAr:{{selectedArticle.qteAr}}</p>
+      <p>StockSecuriteAr :{{selectedArticle.StockSecuriteAr}}</p>
+      <p>VideoPubAr:{{selectedArticle.VideoPubAr}}</p>
+      <p>nbAchatAr:{{selectedArticle.nbAchatAr}}</p>
+      <p>sous_categorie:{{selectedArticle.sous_categorie}}</p>
+      <p>marque :{{selectedArticle.marque}}</p>
+      <p>
+      <button (click)="fermerDetail()" mat-raised-button color="accent" >FERMER</button>
+        
+      </p>
+     </div>
+     <div id="blockPhotoDetail">
+       pas cool
+	 <img mat-card-image class="center-block" src= "http://localhost:8000{{selectedArticle.photoAr}}" alt="IMG-PRODUCT">
+	 <!--
+	 <img mat-card-image class="center-block" src= "http://localhost:8000{{selectedArticle.photoAr}}"  alt={{article.designationAr}}>
+
+	 -->
+      vraiment pas cool
+     </div>
+
+</div>
+
+<!-- **************************  liste d'article tableau  ***************************************** -->
+<!--
+<button mat-raised-button color = "accent" (click)="showListArticle()"> {{lblArticle}} </button>
+
+-->
+<div *ngIf="listArticleVisible" class="Article Prestataire">
+  <table>
+    <tr>
+      <td>id</td>
+      <td>designation</td>
+      <td>prix</td>
+      <td>quantité</td>
+      <td>stock de securité</td>
+      <td>nombre d'achat</td>
+      <td>sous_categorie</td>
+      <td>marque</td>
+      <td>nom de la sous categories</td>
+      <td>nom de la marque</td>
+      
+
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr *ngFor="let article of T_actuel_articles">
+      <td>{{article.id}}</td>
+      <td>{{article.designationAr}}</td>
+      <td>{{article.prixAr}}</td>
+      <td>{{article.qteAr}}</td>
+      <td>{{article.StockSecuriteAr}}</td>
+      <td>{{article.nbAchatAr}}</td>
+      <td>{{article.sous_categorie}}</td>
+      <td>{{article.marque}}</td>
+      <td>{{article.libSCat}}</td>
+      <td>{{article.libMarq}}</td>
+      <td><button (click)="showFormModifier(article)" mat-raised-button color="accent" >MODIFIER</button></td>
+      <td><button (click)="supprimerMarque(article)" mat-raised-button color="accent" >SUPRIMER</button></td>
+      <td><button (click)="showDetail(article)" mat-raised-button color="accent" >DETAIL</button></td>
+      
+    </tr>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Product -->
+	<div class="bg0 m-t-23 p-b-140">
+		<div class="container">
+			<div class="flex-w flex-sb-m p-b-52">
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+
+					<button (click)="TrierArticleAlphabetique()" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+						Tout les produits
+					</button>
+
+					<button (click)="TrierParSous_categorie(soucCat)" *ngFor="let soucCat of sous_categories5" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+						{{soucCat.libSCat}}
+					</button>
+
+					<!--
+						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
+						Homme
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
+						Sac
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
+						Chaussure
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
+						Montre
+					</button>
+					-->
+				</div>
+
+				<div class="flex-w flex-c-m m-tb-10">
+					<div (click)="onShowFilter()" class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+						<i *ngIf="btnFilterVisible1" class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+						<i *ngIf="btnFilterVisible2" class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close "></i>
+						 Filtrer
+					</div>
+
+					<div (click)="onShowSearch()" class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+						<i *ngIf="btnSearchVisible1" class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+						<i *ngIf="btnSearchVisible2" class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close "></i>
+						Rechercher
+					</div>
+				</div>
+				
+				<!-- Search product -->
+				<div *ngIf="searchVisible" class=" panel-search w-full p-t-10 p-b-15">
+					<div class="bor8 dis-flex p-l-15">
+						<button (click)="chercherArticle()" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+							<i class="zmdi zmdi-search"></i>
+						</button>
+
+						<input type="text"  (Change)="onTxtSearchChanged($event)"  class="mtext-107 cl2 size-114 plh2 p-r-15" name="search-product" placeholder="Search" [(ngModel)]="txtSearch" >
+					</div>	
+				</div>
+	<!--*****************************************************************************************************************-->
+			<!--		<input type="text" (change)="onDesignationChanged($event)" id="designationAr" [(ngModel)]="selectedArticle.designationAr" [ngModelOptions]="{standalone: true}">
+	*****************************************************************************************************************-->
+
+				<!-- Filter -->
+				<div *ngIf="filterVisible" class=" panel-filter w-full p-t-10">
+					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+						<div class="filter-col1 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Trier par
+							</div>
+
+							<ul>
+								<li class="p-b-6">
+									<button (click)="TrierArticleAlphabetique()" class="filter-link stext-106 trans-04">
+										Defaut
+									</button>
+								</li>
+
+								<li class="p-b-6">
+									<button (click)="TrierArticleNbreAchat()" class="filter-link stext-106 trans-04">
+										meilleurs ventes
+									</button>
+								</li>
+
+							<!--
+									<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										produits recommandés
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+										nouveauté
+									</a>
+								</li>
+							-->
+
+								<li class="p-b-6">
+									<button (click)="TrierArticlePrixCroissant()" class="filter-link stext-106 trans-04">
+										ordre croissant de prix
+									</button>
+								</li>
+
+								<li class="p-b-6">
+									<button (click)="TrierArticlePrixDecroissant()" class="filter-link stext-106 trans-04">
+										ordre décroissant de prix
+									</button>
+								</li>
+							</ul>
+						</div>
+
+						<div class="filter-col2 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Prix
+							</div>
+
+							<ul>
+								<li class="p-b-6">
+									<button (click)="TrierArticlePrixSuperieurA(-1)" class="filter-link stext-106 trans-04 filter-link-active">
+										All
+									</button>
+								</li>
+
+								<li class="p-b-6">
+									<button (click)="TrierArticleIntervalPrix(0,5000)" class="filter-link stext-106 trans-04">
+										0 Fcfa - 5000
+									</button>
+								</li>
+
+								<li class="p-b-6">
+									<button (click)="TrierArticleIntervalPrix(5000,20000)" class="filter-link stext-106 trans-04">
+										5000 Fcfa - 20000
+									</button>
+								</li>
+
+								<li class="p-b-6">
+									<button (click)="TrierArticleIntervalPrix(20000,50000)" class="filter-link stext-106 trans-04">
+										20000 Fcfa - 50000
+									</button>
+								</li>
+
+								<li class="p-b-6">
+									<button (click)="TrierArticleIntervalPrix(50000,100000)" class="filter-link stext-106 trans-04">
+										50000 Fcfa - 100000
+									</button>
+								</li>
+
+								<li class="p-b-6">
+									<button (click)="TrierArticlePrixSuperieurA(100000)" class="filter-link stext-106 trans-04">
+										100000 Fcfa +
+									</button>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row isotope-grid">
+				
+				
+				<div *ngIf="lbl_aucunArticleVisible" class=" p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+					{{lbl_aucunArticle}}
+				</div>
+
+				<div *ngFor="let article of T_actuel_articles" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img (click)="afficherImage(article.photoAr)" src= "http://localhost:8000{{article.photoAr}}" alt="IMG-PRODUCT">
+
+							<button (click)="ajouterAuPanier(article)" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+								Ajouter au Panier
+              </button>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									{{article.designationAr}}
+								</a>
+
+								<span class="stext-105 cl3">
+									{{article.prixAr}} Fcfa
+								</span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+                <button (click)="ajouterAuPanier(article)" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  js-show-cart">
+                  <i class="zmdi zmdi-shopping-cart"></i>
+                </button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+			</div>
+
+		
+		</div>
+	</div>
+		

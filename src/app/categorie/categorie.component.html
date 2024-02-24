@@ -1,0 +1,49 @@
+
+
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter une categorie</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedcategorie.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedcategorie.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="libCat">
+            libelé
+        </label>
+        <input type="text" id="libCat" [(ngModel)]="selectedcategorie.libCat" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="photoCat">
+            photo
+        </label>
+
+        <input type="file" (change)="onPhotoCatChanged($event)" id="photoCat" [(ngModel)]="selectedcategorie.photoCat" [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierCategorie()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerCategorie()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>libelé</td>
+        <td>photo</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let categorie of categories'>
+        <td>{{categorie.id}}</td>
+        <td>{{categorie.libCat}} </td>
+        <td>{{categorie.photoCat}} </td>
+        <td><button (click)="showFormModifier(categorie)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerCategorie(categorie)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

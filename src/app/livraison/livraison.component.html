@@ -1,0 +1,134 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter une livraison</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedlivraison.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedlivraison.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="libeleL">
+            libelé
+        </label>
+        <input type="text" id="libeleL" [(ngModel)]="selectedlivraison.libeleL" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="dateL">
+            date de livraison
+        </label>
+        <input type="date" id="dateL" [(ngModel)]="selectedlivraison.dateL" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="descriptionL">
+            description
+        </label>
+        <input type="text" id="descriptionL" [(ngModel)]="selectedlivraison.descriptionL" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="montantL">
+            montant de la livraison
+        </label>
+        <input type="text" id="montantL" [(ngModel)]="selectedlivraison.montantL" [ngModelOptions]="{standalone: true}">
+    </div>  
+    <div>
+        <label for="typeL">
+            type
+        </label>
+        <input type="text" id="typeL" [(ngModel)]="selectedlivraison.typeL" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="client">
+            client
+        </label>
+            <!--
+                    <input type="text" id="client" [(ngModel)]="selectedlivraison.client" [ngModelOptions]="{standalone: true}">
+
+            -->
+        <select  id="client" [(ngModel)]="selectedlivraison.client" [ngModelOptions]="{standalone: true}">
+            <option ></option>
+            <option *ngFor="let client of clients" value={{client.id}}> {{client.nomC}} </option>
+          </select>
+      </div>
+      <div>
+        <label for="point_de_retrait">
+            point de retrait
+        </label>
+        <!--
+        <input type="text" id="point_de_retrait" [(ngModel)]="selectedlivraison.point_de_retrait" [ngModelOptions]="{standalone: true}">
+
+        -->
+        <select  id="point_de_retrait" [(ngModel)]="selectedlivraison.point_de_retrait" [ngModelOptions]="{standalone: true}">
+            <option ></option>
+            <option *ngFor="let point_de_retrait of point_de_retraits" value={{point_de_retrait.id}}> {{point_de_retrait.libPoint}} </option>
+          </select>
+      </div>
+      <div>
+        <label for="livreur">
+            livreur
+        </label>
+        <!--
+        <input type="text" id="livreur" [(ngModel)]="selectedlivraison.livreur" [ngModelOptions]="{standalone: true}">
+        -->
+        <select  id="livreur" [(ngModel)]="selectedlivraison.livreur" [ngModelOptions]="{standalone: true}">
+            <option ></option>
+            <option *ngFor="let livreur of livreurs" value={{livreur.id}}> {{livreur.nomL}} </option>
+          </select>
+      </div>
+      <div>
+        <label for="commande">
+            commande
+        </label>
+        <!--
+        <input type="text" id="commande" [(ngModel)]="selectedlivraison.commande" [ngModelOptions]="{standalone: true}">
+
+        -->
+        <select  id="commande" [(ngModel)]="selectedlivraison.commande" [ngModelOptions]="{standalone: true}">
+            <option ></option>
+            <option *ngFor="let commande of commandes" value={{commande.id}}> {{commande.libCmd}} </option>
+          </select>
+      </div>
+      
+      
+
+    <button *ngIf="modifierVisible" (click)="modifierLivraison()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerLivraison()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>libele</td>
+        <td>date</td>
+        <td>description</td>
+        <td>montant</td>
+        <td>type</td>
+        <td>client</td>
+        <td>point_de_retrait</td>
+        <td>livreur</td>
+        <td>commande</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let livraison of livraisons'>
+        
+       <td>{{livraison.id}}</td>
+       <td>{{livraison.libeleL}}</td>
+       <td>{{livraison.dateL}}</td>
+       <td>{{livraison.descriptionL}}</td>
+       <td>{{livraison.montantL}}</td>
+       <td>{{livraison.typeL}}</td>
+       <td>{{livraison.client2.nomC}}</td>
+       <td>{{livraison.point_de_retrait2.libPoint}}</td>
+       <td>{{livraison.livreur2.nomL}}</td>
+       <td>{{livraison.commande2.libCmd}}</td>
+        <td><button (click)="showFormModifier(livraison)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerLivraison(livraison)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>
+
+

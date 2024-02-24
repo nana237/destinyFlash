@@ -1,0 +1,46 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter une marque</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedmarque.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedmarque.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="libMarq">
+            libelé
+        </label>
+        <input type="text" id="libMarq" [(ngModel)]="selectedmarque.libMarq" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="photoMarq">
+            photo
+        </label>
+        <input type="text" id="photoMarq" [(ngModel)]="selectedmarque.photoMarq" [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierMarque()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerMarque()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>libelé</td>
+        <td>photo</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let marque of marques'>
+        <td>{{marque.id}}</td>
+        <td>{{marque.libMarq}} </td>
+        <td>{{marque.photoMarq}} </td>
+        <td><button (click)="showFormModifier(marque)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerMarque(marque)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

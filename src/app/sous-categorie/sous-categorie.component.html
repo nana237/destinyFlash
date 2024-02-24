@@ -1,0 +1,65 @@
+
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter une sous catégorie</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedCategorie.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedCategorie.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="libSCat">
+            libelé
+        </label>
+        <input type="text" id="libSCat" [(ngModel)]="selectedCategorie.libSCat" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="photoSCat">
+            photo
+        </label>
+
+
+        <input type="file" (change)="onPhotoScatChanged($event)" id="photoSCat" [(ngModel)]="selectedCategorie.photoSCat" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="categorie">
+            categorie
+        </label>
+        <!--
+        <input type="text" id="categorie" [(ngModel)]="selectedCategorie.categorie" [ngModelOptions]="{standalone: true}">
+
+        -->
+        <select  id="categorie" [(ngModel)]="selectedCategorie.categorie" [ngModelOptions]="{standalone: true}">
+            <option ></option>
+            <option *ngFor="let categorie of categories" value={{categorie.id}}> {{categorie.libCat}} </option>
+        </select>
+    </div>
+   
+
+    <button *ngIf="modifierVisible" (click)="modifierSousCategorie()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerSousCategorie()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>libelé</td>
+        <td>photo</td>
+        <td>categorie</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let sous_categorie of sous_categories'>
+        <td>{{sous_categorie.id}}</td>
+        <td>{{sous_categorie.libSCat}} </td>
+        <td>{{sous_categorie.photoSCat}} </td>
+        <td>{{sous_categorie.libCat}} </td>
+        <td><button (click)="showFormModifier(sous_categorie)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerSousCategorie(sous_categorie)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

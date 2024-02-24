@@ -1,0 +1,280 @@
+<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 " style="display: inline-block;">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="product-03.jpg" alt="IMG-PRODUCT">
+
+							<button href="#" class="block2-btn  stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+								Quick View
+							</button>
+						</div>
+
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<button class="stext-104 cl4 hov-cl1 trans-04 ">
+									Only Check Trouser
+								</button>
+
+								<span class="stext-105 cl3">
+									$25.50
+								</span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<button class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									icon
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+    <div class="container" style="margin-top: 15px; border: 1px solid black">
+      <h2>Les produits de la semaines</h2>
+ 
+       <div *ngFor="let article of _Article" class=" col-xs-6 col-sm-6 col-md-4 col-lg-4 " style="display: inline-block; margin-top: 5px; margin-bottom: 5px">
+         <mat-card class="example-card">
+           
+           <mat-card-header class="center-block imgMat">
+             
+               <img mat-card-image class="center-block" src={{article.photoA}}  alt="produit seche cheveux">
+             
+           </mat-card-header>
+             
+           <mat-card-content>
+             <p>
+               {{article.designationA}} <br>
+               quantité: {{article.qteA}}
+             </p>
+           </mat-card-content>
+           <mat-card-actions >
+             <button mat-raised-button color="accent" class="col-md-4 bouton">LIKE</button>
+             <!--
+                <span class="espace"></span>
+             -->
+             <button mat-raised-button class="col-md-4 bouton">SHARE</button>
+           </mat-card-actions>
+         </mat-card>
+       </div>
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+<div class="container" style="margin-top: 15px; border: 1px solid black">
+    <h2>Les produits de la semaines</h2>
+
+     <div *ngFor="let article of articles" class=" col-xs-6 col-sm-6 col-md-4 col-lg-4 " style="display: inline-block; margin-top: 5px; margin-bottom: 5px">
+       <mat-card class="example-card">
+         
+         <mat-card-header class="center-block imgMat">
+          
+             <img mat-card-image class="center-block" src= "http://localhost:8000{{article.photoAr}}"  alt={{article.designationAr}}>
+           
+         </mat-card-header>
+           
+         <mat-card-content>
+           <p>
+             {{article.designationAr}} <br>
+             quantité: {{article.qteAr}}
+             sous categories : {{article.sous_categorie}}
+           </p>
+         </mat-card-content>
+         <mat-card-actions >
+           <button (click)="ajouterAuPanier(article)" mat-raised-button color="accent" >AJOUTER AU PANIER</button><br><br>
+           <!--
+              <span class="espace"></span>
+           -->
+           <button mat-raised-button >ACHETER MAINTENANT</button>
+         </mat-card-actions>
+       </mat-card>
+     </div>
+   </div>
+
+
+
+
+<!--===============================================================================================-->	
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/slick/slick.min.js"></script>
+	<script src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/parallax100/parallax100.js"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+   from '../design/vendor/perfect-scrollbar/perfect-scrollbar.min';
+
+          import { sweetalert } from '../design/vendor/sweetalert/sweetalert.min.js';
+
+          import { isotope } from '../design/vendor/isotope/isotope.pkgd.min.js';
+
+          import { magnific } from '../design/vendor/MagnificPopup/jquery.magnific-popup.min.js';
+
+          import { parallax100 } from '../design/vendor/parallax100/parallax100.js';
+
+          import { slick } from '../design/js/slick-custom.js';
+
+          import { slick2 } from '../design/vendor/slick/slick.min.js';
+
+          import { daterangepicker } from '../design/vendor/daterangepicker/daterangepicker.js';
+
+          // import { moment.min } from '../design/vendor/daterangepicker/moment.min.js';
+
+          import { select2 } from '../design/vendor/select2/select2.min.js';
+
+          import { bootstrap } from '../design/vendor/bootstrap/js/bootstrap.min.js';
+
+          import { popper } from '../design/vendor/bootstrap/js/popper.js';
+
+          import { animsition } from '../design/vendor/animsition/js/animsition.min.js';
+
+          import { jquery } from '../design/vendor/jquery/jquery-3.2.1.min.js';

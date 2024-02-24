@@ -1,0 +1,145 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un agentsDestiny</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedagentDestiny.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedagentDestiny.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="nomA">
+            nom
+        </label>
+        <input type="text" id="nomA" [(ngModel)]="selectedagentDestiny.nomA" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="prenomA">
+            prenom
+        </label>
+        <input type="text" id="prenomA" [(ngModel)]="selectedagentDestiny.prenomA" [ngModelOptions]="{standalone: true}">
+    </div>
+
+   
+
+
+    <div>
+        <label for="dateNaissA">
+            date de naissance
+        </label>
+        
+        <input  type="date" id="dateNaissA" [(ngModel)]="selectedagentDestiny.dateNaissA" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="emailA">
+            email
+        </label>
+        <input type="text" id="emailA" [(ngModel)]="selectedagentDestiny.emailA" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="sexeA">
+            sexe
+        </label>
+        <select name="sexeA" id="sexeA" [(ngModel)]="selectedagentDestiny.sexeA" [ngModelOptions]="{standalone: true}">
+            <option value="M">Masculin</option>
+            <option value="F">Feminin</option>
+        </select>
+      </div>
+      <div>
+        <label for="adresseA">
+            adresse
+        </label>
+        <input type="text" id="adresseA" [(ngModel)]="selectedagentDestiny.adresseA" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="villeA">
+            ville
+        </label>
+        <input type="text" id="villeA" [(ngModel)]="selectedagentDestiny.villeA" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="quartierA">
+            quartier
+        </label>
+        <input type="text" id="quartierA" [(ngModel)]="selectedagentDestiny.quartierA" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="numCNI_A">
+            numéro de CNI
+        </label>
+        <input type="text" id="numCNI_A" [(ngModel)]="selectedagentDestiny.numCNI_A" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="telA">
+            numero de telephone
+        </label>
+        <input type="text" id="telA" [(ngModel)]="selectedagentDestiny.telA" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="loginA">
+            login
+        </label>
+        <input type="text" id="loginA" [(ngModel)]="selectedagentDestiny.loginA" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="motDePassA">
+            mot de passe :
+        </label>
+        <input type="password" id="motDePassA" [(ngModel)]="selectedagentDestiny.motDePassA" [ngModelOptions]="{standalone: true}">
+      </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierAgentD()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerAgentD()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+
+
+  <!--
+        <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  -->
+
+
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>nom</td>
+        <td>prenom</td>
+        <td>date de naissance </td>
+        <td>email</td>
+        <td>sexe</td>
+        <td>adresse</td>
+        <td>ville</td>
+        <td>quartier</td>
+        <td>numéro de CNI</td>
+        <td>téléphone</td>
+        <td>login</td>
+        <td>mot de passe</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let agentsDestiny of agentsDestinys'>
+        <td>{{agentsDestiny.id}}</td>
+        <td>{{agentsDestiny.nomA}} </td>
+        <td>{{agentsDestiny.prenomA}} </td>
+        <td>{{agentsDestiny.dateNaissA}} </td>
+        <td>{{agentsDestiny.emailA}} </td>
+        <td>{{agentsDestiny.sexeA}} </td>
+        <td>{{agentsDestiny.adresseA}} </td>
+        <td>{{agentsDestiny.villeA}} </td>
+        <td>{{agentsDestiny.quartierA}} </td>
+        <td>{{agentsDestiny.numCNI_A}} </td>
+        <td>{{agentsDestiny.telA}} </td>
+        <td>{{agentsDestiny.loginA}} </td>
+        <td>{{agentsDestiny.motDePassA}} </td>
+        <td><button (click)="showFormModifier(agentsDestiny)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerAgentD(agentsDestiny)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

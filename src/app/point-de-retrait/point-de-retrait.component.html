@@ -1,0 +1,78 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un point de retrait</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedPointRetrait.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedPointRetrait.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="libPoint">
+            libelé
+        </label>
+        <input type="text" id="libPoint" [(ngModel)]="selectedPointRetrait.libPoint" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="villePoint">
+            ville
+        </label>
+        <input type="text" id="villePoint" [(ngModel)]="selectedPointRetrait.villePoint" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="quartierPoint">
+            quartier
+        </label>
+        <input type="text" id="quartierPoint" [(ngModel)]="selectedPointRetrait.quartierPoint" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="descriptionPoint">
+            description
+        </label>
+        <input type="text" id="descriptionPoint" [(ngModel)]="selectedPointRetrait.descriptionPoint" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="telPoint">
+            tel
+        </label>
+        <input type="text" id="telPoint" [(ngModel)]="selectedPointRetrait.telPoint" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="mailPoint">
+            email
+        </label>
+        <input type="text" id="mailPoint" [(ngModel)]="selectedPointRetrait.mailPoint" [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierPoint()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerPoint()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>libelé</td>
+        <td>ville</td>
+        <td>quartier</td>
+        <td>description</td>
+        <td>tel</td>
+        <td>email</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let pointRetrait of pointRetraits'>
+        <td>{{pointRetrait.id}}</td>
+        <td>{{pointRetrait.libPoint}} </td>
+        <td>{{pointRetrait.villePoint}} </td>
+        <td>{{pointRetrait.quartierPoint}} </td>
+        <td>{{pointRetrait.descriptionPoint}}</td>
+        <td>{{pointRetrait.telPoint}} </td>
+        <td>{{pointRetrait.mailPoint}} </td>
+        <td><button (click)="showFormModifier(pointRetrait)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerPoint(pointRetrait)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

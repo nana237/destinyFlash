@@ -1,0 +1,101 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un Detail</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selecteddetail.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selecteddetail.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="panier">
+            panier
+        </label>
+            <!--
+                    <input type="text" id="panier" [(ngModel)]="selecteddetail.panier" [ngModelOptions]="{standalone: true}">
+
+            -->    
+        <select id="panier" [(ngModel)]="selecteddetail.panier" [ngModelOptions]="{standalone: true}">
+            <option ></option>
+          <option *ngFor="let panier of paniers" value={{panier.id}} > {{panier.libPanier}} </option>
+        </select>
+    </div>
+    <div>
+        <label for="article">
+            article
+        </label>
+    <!--
+        <input type="text" id="article" [(ngModel)]="selecteddetail.article" [ngModelOptions]="{standalone: true}">
+
+    -->        
+        <select id="article" [(ngModel)]="selecteddetail.article" [ngModelOptions]="{standalone: true}">
+            <option ></option>
+          <option *ngFor="let article of articles" value={{article.id}} > {{article.designationAr}} </option>
+        </select>
+   
+    </div>
+    <div>
+        <label for="qte">
+            quantité
+        </label>
+        <input type="text" id="qte" [(ngModel)]="selecteddetail.qte" [ngModelOptions]="{standalone: true}">
+    </div>  
+    <div>
+        <label for="couleur">
+            couleur
+        </label>
+        <input type="text" id="couleur" [(ngModel)]="selecteddetail.couleur" [ngModelOptions]="{standalone: true}">
+    </div>  
+    <div>
+        <label for="taille">
+            taille
+        </label>
+        <input type="text" id="taille" [(ngModel)]="selecteddetail.taille" [ngModelOptions]="{standalone: true}">
+    </div>  
+    <div>
+        <label for="prix">
+            prix
+        </label>
+        <input type="text" id="prix" [(ngModel)]="selecteddetail.prix" [ngModelOptions]="{standalone: true}">
+    </div>  
+    <div>
+        <label for="autreDetail">
+            autre Detail
+        </label>
+        <input type="text" id="autreDetail" [(ngModel)]="selecteddetail.autreDetail" [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierDetail()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerDetail()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>panier</td>
+        <td>article</td>
+        <td>quantité</td>
+        <td>couleur</td>
+        <td>taille</td>
+        <td>prix</td>
+        <td>autre détail</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let detail of details'>
+        <td>{{detail.id}}</td>
+        <td>{{detail.panier}} </td>
+        <td>{{detail.article}} </td>
+        <td>{{detail.qte}} </td>
+        <td>{{detail.couleur}} </td>
+        <td>{{detail.taille}} </td>
+        <td>{{detail.prix}} </td>
+        <td>{{detail.autreDetail}} </td>
+        <td><button (click)="showFormModifier(detail)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerDetail(detail)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

@@ -1,0 +1,145 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un livreur</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedlivreur.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedlivreur.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="nomL">
+            nom
+        </label>
+        <input type="text" id="nomL" [(ngModel)]="selectedlivreur.nomL" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="prenomL">
+            prenom
+        </label>
+        <input type="text" id="prenomL" [(ngModel)]="selectedlivreur.prenomL" [ngModelOptions]="{standalone: true}">
+    </div>
+
+   
+
+
+    <div>
+        <label for="dateNaissL">
+            date de naissance
+        </label>
+        
+        <input  type="date" id="dateNaissL" [(ngModel)]="selectedlivreur.dateNaissL" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="emailL">
+            email
+        </label>
+        <input type="text" id="emailL" [(ngModel)]="selectedlivreur.emailL" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="sexeL">
+            sexe
+        </label>
+        <select name="sexeL" id="sexeL" [(ngModel)]="selectedlivreur.sexeL" [ngModelOptions]="{standalone: true}">
+            <option value="M">Masculin</option>
+            <option value="F">Feminin</option>
+        </select>
+      </div>
+      <div>
+        <label for="adresseL">
+            adresse
+        </label>
+        <input type="text" id="adresseL" [(ngModel)]="selectedlivreur.adresseL" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="villeL">
+            ville
+        </label>
+        <input type="text" id="villeL" [(ngModel)]="selectedlivreur.villeL" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="quartierL">
+            quartier
+        </label>
+        <input type="text" id="quartierL" [(ngModel)]="selectedlivreur.quartierL" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="numCNI_L">
+            numéro de CNI
+        </label>
+        <input type="text" id="numCNI_L" [(ngModel)]="selectedlivreur.numCNI_L" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="telL">
+            numero de telephone
+        </label>
+        <input type="text" id="telL" [(ngModel)]="selectedlivreur.telL" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="loginL">
+            login
+        </label>
+        <input type="text" id="loginL" [(ngModel)]="selectedlivreur.loginL" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="motDePassL">
+            mot de passe :
+        </label>
+        <input type="password" id="motDePassL" [(ngModel)]="selectedlivreur.motDePassL" [ngModelOptions]="{standalone: true}">
+      </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierLivreur()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerLivreur()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+
+
+  <!--
+        <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  -->
+
+
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>nom</td>
+        <td>prenom</td>
+        <td>date de naissance </td>
+        <td>email</td>
+        <td>sexe</td>
+        <td>adresse</td>
+        <td>ville</td>
+        <td>quartier</td>
+        <td>numéro de CNI</td>
+        <td>téléphone</td>
+        <td>login</td>
+        <td>mot de passe</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let livreur of livreurs'>
+        <td>{{livreur.id}}</td>
+        <td>{{livreur.nomL}} </td>
+        <td>{{livreur.prenomL}} </td>
+        <td>{{livreur.dateNaissL}} </td>
+        <td>{{livreur.emailL}} </td>
+        <td>{{livreur.sexeL}} </td>
+        <td>{{livreur.adresseL}} </td>
+        <td>{{livreur.villeL}} </td>
+        <td>{{livreur.quartierL}} </td>
+        <td>{{livreur.numCNI_L}} </td>
+        <td>{{livreur.telL}} </td>
+        <td>{{livreur.loginL}} </td>
+        <td>{{livreur.motDePassL}} </td>
+        <td><button (click)="showFormModifier(livreur)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerLivreur(livreur)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

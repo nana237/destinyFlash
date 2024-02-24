@@ -1,0 +1,248 @@
+
+<img src="http://localhost:8000{{selectedArticle.photoAr}}" alt="{{selectedArticle.designationAr}}">
+
+
+
+
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un article</button>
+<div *ngIf="formVisible">
+<form id="formArticle">
+    <h1> {{labelDuForm}} {{selectedArticle.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedArticle.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="designationAr">
+          designation
+        </label>
+        <input type="text" (change)="onDesignationChanged($event)" id="designationAr" [(ngModel)]="selectedArticle.designationAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="photoAr">
+          photo
+        </label>
+        <!--
+        <input type="text" id="photoAr" [(ngModel)]="selectedArticle.photoAr" [ngModelOptions]="{standalone: true}">
+          
+        -->
+        <input type="file" (change)="onPhotoArChanged($event)" id="photoAr" [(ngModel)]="selectedArticle.photoAr" [ngModelOptions]="{standalone: true}">
+
+    </div>
+    <div>
+        <label for="prixAr">
+          prix
+        </label>
+        <input type="text" id="prixAr" [(ngModel)]="selectedArticle.prixAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="qteAr">
+          quantité en stock
+        </label>
+        <input type="text" id="qteAr" [(ngModel)]="selectedArticle.qteAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="StockSecuriteAr">
+          Stock de sécurite
+        </label>
+        <input type="text" id="StockSecuriteAr" [(ngModel)]="selectedArticle.StockSecuriteAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="VideoPubAr">
+          Video de publicité
+        </label>
+        <input type="text" id="VideoPubAr" [(ngModel)]="selectedArticle.VideoPubAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="nbAchatAr">
+          nombre d'achat
+        </label>
+        <input type="text" id="nbAchatAr" [(ngModel)]="selectedArticle.nbAchatAr" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="sous_categorie">
+          sous catégorie
+        </label>
+        <!--
+        <input type="text" id="sous_categorie" [(ngModel)]="selectedArticle.sous_categorie" [ngModelOptions]="{standalone: true}">
+
+        -->
+        
+        <select  id="sous_categorie" [(ngModel)]="selectedArticle.sous_categorie" [ngModelOptions]="{standalone: true}">
+          <option ></option>
+          <option *ngFor="let sous_categorie of sous_categories" value={{sous_categorie.id}}> {{sous_categorie.libSCat}} </option>
+        </select>
+      </div>
+    <div>
+        <label for="marque">
+          marque
+        </label>
+        <!--
+        <input type="text" id="marque" [(ngModel)]="selectedArticle.marque" [ngModelOptions]="{standalone: true}">
+
+        -->
+        <select id="marque" [(ngModel)]="selectedArticle.marque" [ngModelOptions]="{standalone: true}">
+            <option ></option>
+          <option *ngFor="let marque of marques" value={{marque.id}} > {{marque.libMarq}} </option>
+        </select>
+      </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierArticle()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="creerVisible" (click)="creerArticle()" mat-raised-button color = "accent">Ajouter</button>
+    <button *ngIf="annulerVisible" (click)="annulerArticle()" mat-raised-button >Annuler</button>
+
+    <!--
+      <div id="photoArticle" *ngIf="formPhotovisibe">
+      <img src="http://localhost:8000{{selectedArticle.photoAr}}" alt="{{selectedArticle.designationAr}}">
+    </div>
+    -->
+    
+  </form>
+
+</div>
+
+<!-- ************************************ detail sur l'artilce ***************************************-->
+
+<div class="detail" *ngIf="detailvisible">
+     <div id="blockDetail">
+      <p>id: {{selectedArticle.id}}</p>
+      <p>designationAr:{{selectedArticle.designationAr}}</p>
+      <p>photoAr:{{selectedArticle.photoAr}}</p>
+      <p>prixAr:{{selectedArticle.prixAr}}</p>
+      <p>qteAr:{{selectedArticle.qteAr}}</p>
+      <p>StockSecuriteAr :{{selectedArticle.StockSecuriteAr}}</p>
+      <p>VideoPubAr:{{selectedArticle.VideoPubAr}}</p>
+      <p>nbAchatAr:{{selectedArticle.nbAchatAr}}</p>
+      <p>sous_categorie:{{selectedArticle.sous_categorie}}</p>
+      <p>marque :{{selectedArticle.marque}}</p>
+      <p>
+      <button (click)="fermerDetail()" mat-raised-button color="accent" >FERMER</button>
+        
+      </p>
+     </div>
+     <div id="blockPhotoDetail">
+       pas cool
+      <img mat-card-image class="center-block" src= "http://localhost:8000{{selectedArticle.photoAr}}"  alt={{article.designationAr}}>
+      vraiment pas cool
+     </div>
+
+</div>
+
+<!-- **************************  liste d'article tableau  ***************************************** -->
+<div class="Article Prestataire">
+  <table>
+    <tr>
+      <td>id</td>
+      <td>designation</td>
+      <td>prix</td>
+      <td>quantité</td>
+      <td>stock de securité</td>
+      <td>nombre d'achat</td>
+      <td>sous_categorie</td>
+      <td>marque</td>
+      <td>nom de la sous categories</td>
+      <td>nom de la marque</td>
+      
+
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr *ngFor="let article of articles">
+      <td>{{article.id}}</td>
+      <td>{{article.designationAr}}</td>
+      <td>{{article.prixAr}}</td>
+      <td>{{article.qteAr}}</td>
+      <td>{{article.StockSecuriteAr}}</td>
+      <td>{{article.nbAchatAr}}</td>
+      <td>{{article.sous_categorie}}</td>
+      <td>{{article.marque}}</td>
+      <td>{{article.libSCat}}</td>
+      <td>{{article.libMarq}}</td>
+      <td><button (click)="showFormModifier(article)" mat-raised-button color="accent" >MODIFIER</button></td>
+      <td><button (click)="supprimerMarque(article)" mat-raised-button color="accent" >SUPRIMER</button></td>
+      <td><button (click)="showDetail(article)" mat-raised-button color="accent" >DETAIL</button></td>
+      
+    </tr>
+  </table>
+</div>
+<!--
+<div class="container" style="margin-top: 15px; border: 1px solid black">
+    <h2>Les produits de la semaines</h2>
+
+     <div *ngFor="let article of articles" class=" col-xs-6 col-sm-6 col-md-4 col-lg-4 " style="display: inline-block; margin-top: 5px; margin-bottom: 5px">
+       <mat-card class="example-card">
+         
+         <mat-card-header class="center-block imgMat">
+          
+             <img mat-card-image class="center-block" src= "http://localhost:8000{{article.photoAr}}"  alt={{article.designationAr}}>
+           
+         </mat-card-header>
+           
+         <mat-card-content>
+           <p>
+             {{article.designationAr}} <br>
+             quantité: {{article.qteAr}}
+             sous categories : {{article.sous_categorie}}
+           </p>
+         </mat-card-content>
+         <mat-card-actions >
+           <button (click)="ajouterAuPanier(article)" mat-raised-button color="accent" >AJOUTER AU PANIER</button><br><br>
+           
+           <button mat-raised-button >ACHETER MAINTENANT</button>
+         </mat-card-actions>
+       </mat-card>
+     </div>
+   </div>
+-->
+<!--
+              <span class="espace"></span>
+           -->
+
+
+
+
+
+
+
+
+
+
+
+
+   <div class="container" style="margin-top: 15px; border: 1px solid black">
+    <h2>Les produits de la semaines</h2>
+  <div *ngFor="let article of articles" class="col-sm-6 col-md-4 col-lg-3 p-b-35 " style="display: inline-block;">
+    <!-- Block2 -->
+    <div class="block2">
+      <div class="block2-pic hov-img0">
+        <img src= "http://localhost:8000{{article.photoAr}}"  alt={{article.designationAr}}>
+
+        <button (click)="ajouterAuPanier(article)"  class="block2-btn  stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+         Ajouter Au panier
+        </button>
+      </div>
+
+
+      <div class="block2-txt flex-w flex-t p-t-14">
+        <div class="block2-txt-child1 flex-col-l ">
+          <button class="stext-104 cl4 hov-cl1 trans-04 ">
+            {{article.designationAr}}
+          </button>
+
+          <span class="stext-105 cl3">
+            {{article.prixAr}} Fcfa
+          </span>
+        </div>
+
+        <div class="block2-txt-child2 flex-r p-t-3">
+          <button (click)="ajouterAuPanier(article)" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+            icon
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
