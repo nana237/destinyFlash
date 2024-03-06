@@ -1,0 +1,145 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un prestataire</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedprestataire.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedprestataire.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="nomP">
+            nom
+        </label>
+        <input type="text" id="nomP" [(ngModel)]="selectedprestataire.nomP" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="prenomP">
+            prenom
+        </label>
+        <input type="text" id="prenomP" [(ngModel)]="selectedprestataire.prenomP" [ngModelOptions]="{standalone: true}">
+    </div>
+
+   
+
+
+    <div>
+        <label for="dateNaissP">
+            date de naissance
+        </label>
+        
+        <input  type="date" id="dateNaissP" [(ngModel)]="selectedprestataire.dateNaissP" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="emailP">
+            email
+        </label>
+        <input type="text" id="emailP" [(ngModel)]="selectedprestataire.emailP" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="sexeP">
+            sexe
+        </label>
+        <select name="sexeP" id="sexeP" [(ngModel)]="selectedprestataire.sexeP" [ngModelOptions]="{standalone: true}">
+            <option value="M">Masculin</option>
+            <option value="F">Feminin</option>
+        </select>
+      </div>
+      <div>
+        <label for="adresseP">
+            adresse
+        </label>
+        <input type="text" id="adresseP" [(ngModel)]="selectedprestataire.adresseP" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="villeP">
+            ville
+        </label>
+        <input type="text" id="villeP" [(ngModel)]="selectedprestataire.villeP" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="quartierP">
+            quartier
+        </label>
+        <input type="text" id="quartierP" [(ngModel)]="selectedprestataire.quartierP" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="numCNI_P">
+            numéro de CNI
+        </label>
+        <input type="text" id="numCNI_P" [(ngModel)]="selectedprestataire.numCNI_P" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="telP">
+            numero de telephone
+        </label>
+        <input type="text" id="telP" [(ngModel)]="selectedprestataire.telP" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="loginP">
+            login
+        </label>
+        <input type="text" id="loginP" [(ngModel)]="selectedprestataire.loginP" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="motDePassP">
+            mot de passe :
+        </label>
+        <input type="password" id="motDePassP" [(ngModel)]="selectedprestataire.motDePassP" [ngModelOptions]="{standalone: true}">
+      </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierPrestataire()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerPrestataire()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+
+
+  <!--
+        <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  -->
+
+
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>nom</td>
+        <td>prenom</td>
+        <td>date de naissance </td>
+        <td>email</td>
+        <td>sexe</td>
+        <td>adresse</td>
+        <td>ville</td>
+        <td>quartier</td>
+        <td>numéro de CNI</td>
+        <td>téléphone</td>
+        <td>login</td>
+        <td>mot de passe</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let prestataire of prestataires'>
+        <td>{{prestataire.id}}</td>
+        <td>{{prestataire.nomP}} </td>
+        <td>{{prestataire.prenomP}} </td>
+        <td>{{prestataire.dateNaissP}} </td>
+        <td>{{prestataire.emailP}} </td>
+        <td>{{prestataire.sexeP}} </td>
+        <td>{{prestataire.adresseP}} </td>
+        <td>{{prestataire.villeP}} </td>
+        <td>{{prestataire.quartierP}} </td>
+        <td>{{prestataire.numCNI_P}} </td>
+        <td>{{prestataire.telP}} </td>
+        <td>{{prestataire.loginP}} </td>
+        <td>{{prestataire.motDePassP}} </td>
+        <td><button (click)="showFormModifier(prestataire)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerPrestataire(prestataire)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

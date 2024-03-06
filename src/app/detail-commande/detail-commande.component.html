@@ -1,0 +1,105 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un detail de commande</button>
+
+    <div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selecteddetailcom.id}}</h1>
+    
+        <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selecteddetailcom.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    
+    <div>
+        <label for="commande">
+            commande
+        </label>
+        <!--
+                <input type="text" id="commande" [(ngModel)]="selecteddetailcom.commande" [ngModelOptions]="{standalone: true}">
+
+        -->  
+      <select name="commande" id="commande" [(ngModel)]="selecteddetailcom.commande" [ngModelOptions]="{standalone: true}">
+            <option value=""></option>
+            <option *ngFor="let commande of commandes" value="{{commande.id}}">{{commande.libCmd}}</option>
+        </select>
+    </div>
+    <div>
+        <label for="article">
+            article
+        </label>
+        <!--
+        <input type="text" id="article" [(ngModel)]="selecteddetailcom.article" [ngModelOptions]="{standalone: true}">
+
+        -->
+        <select name="article" id="article" [(ngModel)]="selecteddetailcom.article" [ngModelOptions]="{standalone: true}">
+            <option value=""></option>
+            <option *ngFor="let article of articles" value="{{article.id}}">{{article.designationAr}}</option>
+        </select>
+    </div>  
+    <div>
+        <label for="qteCom">
+            quantité commandée
+        </label>
+        <input type="text" id="qteCom" [(ngModel)]="selecteddetailcom.qteCom" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+      <label for="couleurCom">
+        couleur
+      </label>
+      <input type="text" id="couleurCom" [(ngModel)]="selecteddetailcom.couleurCom" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+    <label for="tailleCom">
+        taille
+    </label>
+    <input type="text" id="tailleCom" [(ngModel)]="selecteddetailcom.tailleCom" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div>
+  <label for="prixCom">
+      prix
+  </label>
+  <input type="text" id="prixCom" [(ngModel)]="selecteddetailcom.prixCom" [ngModelOptions]="{standalone: true}">
+</div>  
+<div>
+    <label for="autreDetailCom">
+        autre Detail
+    </label>
+    <input type="text" id="autreDetailCom" [(ngModel)]="selecteddetailcom.autreDetailCom" [ngModelOptions]="{standalone: true}">
+  </div>
+  
+
+    <button *ngIf="modifierVisible" (click)="modifierDetailCom()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="  creerDetailCom()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>commande</td>
+        <td>article</td>
+        <td>qté Commandé</td>
+        <td>couleur</td>
+        <td>taille</td>
+        <td>prix</td>
+        <td>autre Détail</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let detailcom of detailcoms'>
+        <td>{{detailcom.id}}</td>
+        <td>{{detailcom.commande2.libCmd}} </td>
+        <td>{{detailcom.article2.designationAr}} </td>
+        <td>{{detailcom.qteCom}} </td>
+        <td>{{detailcom.couleurCom}} </td>
+        <td>{{detailcom.tailleCom}} </td>
+        <td>{{detailcom.prixCom}} </td>
+        <td>{{detailcom.autreDetailCom}} </td>
+        <td><button (click)="showFormModifier(detailcom)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerDetailCom(detailcom)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

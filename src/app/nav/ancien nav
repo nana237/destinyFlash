@@ -1,0 +1,78 @@
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar >Menu</mat-toolbar>
+    
+    <mat-nav-list>
+      <a mat-list-item routerLink="accueil">Accueil</a>
+      <a mat-list-item routerLink="PointDeRetrait">Point de retrait</a>
+      <a mat-list-item routerLink="article">Article</a>
+      <a mat-list-item routerLink="sous_categorie">Sous catégories</a>
+      <a mat-list-item routerLink="categorie">Catégories</a>
+      <a mat-list-item routerLink="marque">Marque</a>
+      <a mat-list-item routerLink="panier">Panier</a>
+      <a mat-list-item routerLink="client">Client</a>
+      <a mat-list-item routerLink="seConnecter">se deconnecter</a>
+      <a mat-list-item routerLink="detail_P_A"> detail panier article</a>
+      <a mat-list-item routerLink="caracteristique"> caracteristique </a>
+      <a mat-list-item routerLink="commande"> commande </a>
+      <a mat-list-item routerLink="detailCommande"> detail de commande </a>
+      <a mat-list-item routerLink="livreur"> livreur </a>
+      <a mat-list-item routerLink="livraison"> livraison </a>
+      <a mat-list-item routerLink="facture"> facture </a>
+      <a mat-list-item routerLink="agentDestiny"> agent destiny </a>
+      <a mat-list-item routerLink="prestataire"> prestataire</a>
+      
+    </mat-nav-list>
+  </mat-sidenav>
+ <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="col-md-3">DestinyFlashWeb</span>
+
+      <mat-form-field floatLabel=never class="col-md-8" >
+          
+        <input matInput placeholder="Rechercher des produits ou catégories" >
+        <span matPrefix> <mat-icon class="iconSearch" aria-hidden="false" aria-label="icon search">search</mat-icon>  </span>
+          
+        
+
+      <!--
+      -->
+      </mat-form-field>
+
+      <mat-menu #menu="matMenu"></mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+  
+      <!--
+          
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label=" menu">menu</button>
+   
+      -->
+    </mat-toolbar>
+    <!-- Add Content Here -->
+   
+
+
+   
+    <ng-content>
+      
+    </ng-content>
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>
+
+
+

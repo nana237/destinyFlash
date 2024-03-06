@@ -1,0 +1,29 @@
+#miniBlock{
+    width: 80%;
+    margin-right: 20%;
+}
+
+#miniBlock2{
+    margin-right: 20%;
+}
+
+#connexion{
+    color: black;
+}
+
+
+/*
+
+ se_Deconnecter(){
+    this.sessionActuelle={
+      id:-1,
+      login:"",
+      password:"",
+      type:"",
+      etat:"desactivé",
+    }
+    
+    this.partargerSession(this.sessionActuelle);
+  }
+
+*/

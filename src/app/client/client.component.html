@@ -1,0 +1,145 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un client</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedclient.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedclient.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="nomC">
+            nom
+        </label>
+        <input type="text" id="nomC" [(ngModel)]="selectedclient.nomC" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="prenomC">
+            prenom
+        </label>
+        <input type="text" id="prenomC" [(ngModel)]="selectedclient.prenomC" [ngModelOptions]="{standalone: true}">
+    </div>
+
+   
+
+
+    <div>
+        <label for="dateNaissC">
+            date de naissance
+        </label>
+        
+        <input  type="date" id="dateNaissC" [(ngModel)]="selectedclient.dateNaissC" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="emailC">
+            email
+        </label>
+        <input type="text" id="emailC" [(ngModel)]="selectedclient.emailC" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="sexeC">
+            sexe
+        </label>
+        <select name="sexeC" id="sexeC" [(ngModel)]="selectedclient.sexeC" [ngModelOptions]="{standalone: true}">
+            <option value="M">Masculin</option>
+            <option value="F">Feminin</option>
+        </select>
+      </div>
+      <div>
+        <label for="adresseC">
+            adresse
+        </label>
+        <input type="text" id="adresseC" [(ngModel)]="selectedclient.adresseC" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="villeC">
+            ville
+        </label>
+        <input type="text" id="villeC" [(ngModel)]="selectedclient.villeC" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="quartierC">
+            quartier
+        </label>
+        <input type="text" id="quartierC" [(ngModel)]="selectedclient.quartierC" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="numCNI_C">
+            numéro de CNI
+        </label>
+        <input type="text" id="numCNI_C" [(ngModel)]="selectedclient.numCNI_C" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="telC">
+            numero de telephone
+        </label>
+        <input type="text" id="telC" [(ngModel)]="selectedclient.telC" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="loginC">
+            login
+        </label>
+        <input type="text" id="loginC" [(ngModel)]="selectedclient.loginC" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div>
+        <label for="motDePassC">
+            mot de passe :
+        </label>
+        <input type="password" id="motDePassC" [(ngModel)]="selectedclient.motDePassC" [ngModelOptions]="{standalone: true}">
+      </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierClient()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerClient()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+
+
+  <!--
+        <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  -->
+
+
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>nom</td>
+        <td>prenom</td>
+        <td>date de naissance </td>
+        <td>email</td>
+        <td>sexe</td>
+        <td>adresse</td>
+        <td>ville</td>
+        <td>quartier</td>
+        <td>numéro de CNI</td>
+        <td>téléphone</td>
+        <td>login</td>
+        <td>mot de passe</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let client of clients'>
+        <td>{{client.id}}</td>
+        <td>{{client.nomC}} </td>
+        <td>{{client.prenomC}} </td>
+        <td>{{client.dateNaissC}} </td>
+        <td>{{client.emailC}} </td>
+        <td>{{client.sexeC}} </td>
+        <td>{{client.adresseC}} </td>
+        <td>{{client.villeC}} </td>
+        <td>{{client.quartierC}} </td>
+        <td>{{client.numCNI_C}} </td>
+        <td>{{client.telC}} </td>
+        <td>{{client.loginC}} </td>
+        <td>{{client.motDePassC}} </td>
+        <td><button (click)="showFormModifier(client)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerClient(client)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>

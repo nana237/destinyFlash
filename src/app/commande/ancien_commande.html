@@ -1,0 +1,142 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter une commande</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedcommande.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedcommande.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="libCmd">
+            libelé
+        </label>
+        <input type="text" id="libCmd" [(ngModel)]="selectedcommande.libCmd" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="dateCmd">
+            date
+        </label>
+        <input type="date" id="dateCmd" [(ngModel)]="selectedcommande.dateCmd" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="statusCmd">
+            status
+        </label>
+        <!--
+        <input type="text" id="statusCmd" [(ngModel)]="selectedcommande.statusCmd" [ngModelOptions]="{standalone: true}">
+
+        -->
+        <select name="statusCmd" id="statusCmd" [(ngModel)]="selectedcommande.statusCmd" [ngModelOptions]="{standalone: true}">
+            <option value="EA">EN ATTENTE</option>
+            <option value="L">LIVRER</option>
+            <option value="AR">A RETIRER</option>
+            <option value="EL">EN COUR DE LIVRAISON</option>
+            <option value="R">RECU</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="descriptionCmd">
+            description
+        </label>
+        <input type="text" id="descriptionCmd" [(ngModel)]="selectedcommande.descriptionCmd" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="montantLivraisonCmd">
+            montant de la livraison 
+        </label>
+        <input type="text" id="montantLivraisonCmd" [(ngModel)]="selectedcommande.montantLivraisonCmd" [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <div>
+        <label for="client">
+            client
+        </label>
+        <input type="text" id="client" [(ngModel)]="selectedcommande.client" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="articles">
+            articles
+        </label>
+        <select name="articles" id="articles" multiple [(ngModel)]="selectedcommande.articles" [ngModelOptions]="{standalone: true}">
+            <option value=""></option>
+            <option *ngFor="let article of articles" value="{{article.id}}">{{article.designationAr}}</option>
+            
+        </select>
+        
+    </div>
+    <!--
+        
+    <div>
+        <label for="caracteristiques">
+            caracteristiques
+        </label>
+        <input type="text" id="caracteristiques" [(ngModel)]="selectedcommande.caracteristiques" [ngModelOptions]="{standalone: true}">
+    </div>
+
+    -->
+
+    <button *ngIf="modifierVisible" (click)="modifierCommande()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerCommande()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+
+<button  (click)="onBtnListCom()" mat-raised-button color = "accent"> {{txtbtnListForm}}</button>
+
+<div *ngIf="listComVisible">  
+<table>
+    <thead>
+        <td>id</td>
+        <td>libelé</td>
+        <td>date</td>
+        <td>status</td>
+        <td>description</td>
+        <td>montant de la livraison</td>
+        <td>client</td>
+        <td>articles</td>
+        <!--
+        <td>caracteristiques</td>
+
+        -->
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let commande of commandes'>
+        <td>{{commande.id}}</td>
+        <td>{{commande.libCmd}} </td>
+        <td>{{commande.dateCmd}} </td>
+        <td>{{commande.statusCmd}} </td>
+        <td>{{commande.descriptionCmd}} </td>
+        <td>{{commande.montantLivraisonCmd}} </td>
+        <td>{{commande.client2.nomC}} {{commande.client2.prenomC}} </td>
+        <td><span *ngFor="let article of commande.articles2"> {{article.designationAr}} , </span> </td>
+        <td>{{commande.caracteristiques}} </td>
+        <td><button (click)="showFormModifier(commande)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerCommande(commande)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>
+</div>
+
+
+<div>
+    <div *ngFor="let comActuelle of commandeActuelles">
+        <div>
+            <h4> {{comActuelle.dateCmd}} {{comActuelle.statusCmd}} {{comActuelle.montantCmd}} </h4>
+        </div>
+        <br>
+        <div>
+            <div *ngFor="let detail of comActuelle.details">
+            <img class="caseImg" src="http://localhost:8000{{detail.photoCom}}" alt={{detail.autreDetailCom}}>
+
+                {{detail.qteCom}} piece(s) de couleur {{detail.couleurCom}} et de taille {{detail.tailleCom}} : {{detail.prixCom}} Fcfa l'unité
+            </div>
+            <button (click)="supprimerCommande2(comActuelle,comActuelle.details)" mat-raised-button color = "accent">annuler la commande</button>
+        </div>
+        <hr>
+    </div>
+</div>

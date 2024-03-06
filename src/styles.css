@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import url(../node_modules/bootstrap/dist/css/bootstrap.min.css); */
+
+/*
+@import url(app/style2/componentArticle/main.css); 
+@import url(app/style2/componentArticle/util.css); 
+@import url(app/style2/componentArticle/util.css); 
+*/
+
+
+@import url(app/design/vendor/bootstrap/css/bootstrap.min.css); 
+@import url(app/design/fonts/font-awesome-4.7.0/css/font-awesome.min.css); 
+@import url(app/design/fonts/iconic/css/material-design-iconic-font.min.css); 
+@import url(app/design/fonts/linearicons-v1.0.0/icon-font.min.css); 
+@import url(app/design/vendor/animate/animate.css); 
+@import url(app/design/vendor/css-hamburgers/hamburgers.min.css); 
+@import url(app/design/vendor/animsition/css/animsition.min.css); 
+@import url(app/design/vendor/select2/select2.min.css); 
+@import url(app/design/vendor/daterangepicker/daterangepicker.css); 
+@import url(app/design/vendor/slick/slick.css); 
+@import url(app/design/vendor/MagnificPopup/magnific-popup.css); 
+@import url(app/design/vendor/perfect-scrollbar/perfect-scrollbar.css); 
+
+
+
+@import url(app/design/css/util.css); 
+@import url(app/design/css/main.css); 
+
+/*
+
+
+
+*/
+
+
+/*
+design
+
+
+// <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">	
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+*/
+
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/*  Autre theme:
+    deeppurple-amber.css
+    indigo-pink.css
+    pink-bluegrey.css
+    purple-green.css
+
+*/
+
+html,
+body{
+    height: 100%;
+}
+body { margin: 0; }

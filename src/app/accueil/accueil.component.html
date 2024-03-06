@@ -1,0 +1,500 @@
+
+	<!--
+		*****************************************************
+		*********************************************************
+		**************************************************
+		************
+		**********************
+		*****************
+		*****
+	-->
+		<div class="baniere" >
+		<img class="baniere_img" src="assets/images/slide-01.jpg" alt="Angular Carousel 1">
+		<h1 class="TextBaniere">Destiny Flash</h1>
+	  </div>
+	<!-- Slider 
+
+
+	<section class="section-slide">
+		<div class="wrap-slick1">
+			<div class="slick1">
+	<ngb-carousel
+	interval="5000"
+	[showNavigationArrows]="true" 
+	[showNavigationIndicators]="false"
+	[keyboard]="true"
+	[pauseOnHover]="true"
+	[wrap]="true"
+	[activeId]="'secondSlide'"
+	>
+		<ng-template ngbSlide 
+		>
+		  <div class="picsum-img-wrapper">
+			<img src="assets/images/slide-01.jpg" alt="Angular Carousel 1">
+		  </div>
+		  <div class="carousel-caption  flex-col-l-m h-full p-t-100 p-b-30 respon5">
+			<span class="ltext-101 cl2 respon2">
+				Women Collection 2018
+			</span>
+			<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+				NEW SEASON
+			</h2>
+			<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+				Shop Now
+			</a>
+		  </div>
+		</ng-template>
+		<ng-template ngbSlide>
+		  <div class="picsum-img-wrapper">
+			<img src="assets/images/slide-02.jpg" alt="Angular Carousel 2">
+		  </div>
+		  <div class="carousel-caption  flex-col-l-m h-full p-t-100 p-b-30 respon5">
+			<span class="ltext-101 cl2 respon2">
+				Men Collection 2018
+			</span>
+			<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+				New arrivals
+			</h2>
+			<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+				Shop Now
+			</a>
+		  </div>
+		</ng-template>
+	  </ngb-carousel>
+
+	</div>
+</div>
+</section>
+
+-->
+
+	<!--
+		*****************************************************
+		*********************************************************
+		**************************************************
+		************
+		**********************
+		*****************
+		*****
+		<div class="container" style="margin-top: 50px">
+		<a href="#" class="btn btn-info" data-toggle="modal" data-target="#monmodal">modal</a>
+		  <div class="modal fade" id="monmodal">
+			  <div class="modal-dialog">
+				  <div class="modal-content">
+					  <div class="modal-header">
+						  <button type="button" class="close" data-dismiss="modal">x</button>
+						  <h4>titre de mon modal</h4>
+					  </div>
+					  <div class="modal-body">
+						  azerty
+					  </div>
+					  <div class="modal-footer">
+						  <button class="btn btn-danger" data-dismiss="modal">fermer</button>
+					  </div>
+				  </div>
+			  </div>
+		  </div>
+	</div>
+	-->
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+	<div>
+		<span class=" ltext-102 trans-04 p-b-8">
+			Meilleures ventes {{sous_categories[0].libSCat}}
+
+		</span>
+		<hr>
+
+		<br> <br>
+		<div class="row isotope-grid">
+		<div *ngFor="let article of sous_categories[0].articles" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+			<!-- Block2 -->
+			<div class="block2">
+				<div class="block2-pic hov-img0">
+					<img (click)="afficherImage(article.photoAr)" src= "http://localhost:8000{{article.photoAr}}" alt="IMG-PRODUCT">
+
+					<button (click)="ajouterAuPanier2(article)" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+						Ajouter au Panier
+	  </button>
+				</div>
+
+				<div class="block2-txt flex-w flex-t p-t-14">
+					<div class="block2-txt-child1 flex-col-l ">
+						<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+							{{article.designationAr}}
+						</a>
+
+						<span class="stext-105 cl3">
+							{{article.prixAr}} Fcfa
+						</span>
+					</div>
+
+					<div class="block2-txt-child2 flex-r p-t-3">
+		<button (click)="ajouterAuPanier2(article)" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  js-show-cart">
+		  <i class="zmdi zmdi-shopping-cart"></i>
+		</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<div  class=" p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+        <div  class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+            <div class="mtext-109 cl2 p-b-30">
+				Le corona virus est bien réel, pour votre sécurité et pour vos proches mettez un masque, 
+				respectez les mesures barières.
+            </div>
+        </div>
+    </div>
+	<!-- ---------------------------------------------------------------------------------- -->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50" >
+				<div class="m-l-25 m-r--38 m-lr-0-xl">
+					<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+						<div class="how-bor1 ">
+							<div class="hov-img0">
+									<img src="assets/images/icons/logo-03.png" alt="IMG-LOGO">
+								  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			   
+<!--
+	
+								<a  href="#" class="logo">
+-->
+
+
+
+			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50" >
+				<div class="m-l-25 m-r--38 m-lr-0-xl">
+					<div class="bor16 p-l-29 p-b-9 m-t-22">
+						<p class="stext-114 cl6 p-r-40 p-b-11">
+							Nous ne faisons pas que du e-commerce, découvrez les autres 
+							domaines d'activités de <a href="https://destiny-innovation.com">Destiny</a>
+						</p>
+				
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- ---------------------------------------------------------------------------------- -->
+
+
+	<div class="sec-banner bg0 p-t-80 p-b-50">
+		<span class=" ltext-102 trans-04 p-b-8">
+			Les catégories du moments 
+
+		</span>
+
+		<div class="container">
+			<div class="row">
+				<div (click)="onOuvrirScat(scat)" *ngFor="let scat of sous_categoriesM" class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+					<!-- Block1 -->
+					<div class="block1 wrap-pic-w">
+							<img src= "http://localhost:8000{{scat.photoSCat}}" alt="IMG-CATEGORIE">
+		
+						<button (click)="onOuvrirScat(scat)" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									{{scat.libSCat}}
+								</span>
+		
+								
+							</div>
+		
+							<div class="block1-txt-child2 p-b-4 trans-05">
+								<div (click)="onOuvrirScat(scat)" class="block1-link stext-101 cl0 trans-09">
+									Y Aller
+								</div>
+							</div>
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div>
+		<span class=" ltext-102 trans-04 p-b-8">
+			 {{sous_categories[1].libSCat}} les plus demandé
+
+		</span>
+		<hr>
+		<br> <br>
+		<div class="row isotope-grid">
+		<div *ngFor="let article of sous_categories[1].articles" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+			<!-- Block2 -->
+			<div class="block2">
+				<div class="block2-pic hov-img0">
+					<img (click)="afficherImage(article.photoAr)" src= "http://localhost:8000{{article.photoAr}}" alt="IMG-PRODUCT">
+
+					<button (click)="ajouterAuPanier2(article)" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+						Ajouter au Panier
+	  </button>
+				</div>
+
+				<div class="block2-txt flex-w flex-t p-t-14">
+					<div class="block2-txt-child1 flex-col-l ">
+						<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+							{{article.designationAr}}
+						</a>
+
+						<span class="stext-105 cl3">
+							{{article.prixAr}} Fcfa
+						</span>
+					</div>
+
+					<div class="block2-txt-child2 flex-r p-t-3">
+		<button (click)="ajouterAuPanier2(article)" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  js-show-cart">
+		  <i class="zmdi zmdi-shopping-cart"></i>
+		</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- ---------------------------------------------------------------------------------- 
+
+<div>
+	<span class=" ltext-102 trans-04 p-b-8">
+		 {{sous_categories[2].libSCat}} les plus demandé
+
+	</span>
+		<hr>
+		<br> <br>
+
+	<div *ngFor="let article of sous_categories[2].articles" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+	-->	<!-- Block2 
+		<div class="block2">
+			<div class="block2-pic hov-img0">
+				<img (click)="afficherImage(article.photoAr)" src= "http://localhost:8000{{article.photoAr}}" alt="IMG-PRODUCT">
+
+				<button (click)="ajouterAuPanier2(article)" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+					Ajouter au Panier
+  </button>
+			</div>
+
+			<div class="block2-txt flex-w flex-t p-t-14">
+				<div class="block2-txt-child1 flex-col-l ">
+					<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+						{{article.designationAr}}
+					</a>
+
+					<span class="stext-105 cl3">
+						{{article.prixAr}} Fcfa
+					</span>
+				</div>
+
+				<div class="block2-txt-child2 flex-r p-t-3">
+	<button (click)="ajouterAuPanier2(article)" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  js-show-cart">
+	  <i class="zmdi zmdi-shopping-cart"></i>
+	</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+-->
+<!-- ---------------------------------------------------------------------------------- 
+
+<div>
+	<span class=" ltext-102 trans-04 p-b-8">
+		Nous vous recommandons ces {{sous_categories[3].libSCat}}
+
+	</span>
+	<hr>
+	<br> <br>
+
+	<div *ngFor="let article of sous_categories[3].articles" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+	-->	<!-- Block2 
+		<div class="block2">
+			<div class="block2-pic hov-img0">
+				<img (click)="afficherImage(article.photoAr)" src= "http://localhost:8000{{article.photoAr}}" alt="IMG-PRODUCT">
+
+				<button (click)="ajouterAuPanier2(article)" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+					Ajouter au Panier
+  </button>
+			</div>
+
+			<div class="block2-txt flex-w flex-t p-t-14">
+				<div class="block2-txt-child1 flex-col-l ">
+					<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+						{{article.designationAr}}
+					</a>
+
+					<span class="stext-105 cl3">
+						{{article.prixAr}} Fcfa
+					</span>
+				</div>
+
+				<div class="block2-txt-child2 flex-r p-t-3">
+	<button (click)="ajouterAuPanier2(article)" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  js-show-cart">
+	  <i class="zmdi zmdi-shopping-cart"></i>
+	</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+-->
+<!-- ---------------------------------------------------------------------------------- -->
+
+<div>
+	<span class=" ltext-102 trans-04 p-b-8">
+		Meilleures ventes {{sous_categories[4].libSCat}}
+
+	</span>
+	<hr>
+	<br> <br>
+	<div class="row isotope-grid">
+	<div *ngFor="let article of sous_categories[4].articles" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+		<!-- Block2 -->
+		<div class="block2">
+			<div class="block2-pic hov-img0">
+				<img (click)="afficherImage(article.photoAr)" src= "http://localhost:8000{{article.photoAr}}" alt="IMG-PRODUCT">
+
+				<button (click)="ajouterAuPanier2(article)" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+					Ajouter au Panier
+  </button>
+			</div>
+
+			<div class="block2-txt flex-w flex-t p-t-14">
+				<div class="block2-txt-child1 flex-col-l ">
+					<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+						{{article.designationAr}}
+					</a>
+
+					<span class="stext-105 cl3">
+						{{article.prixAr}} Fcfa
+					</span>
+				</div>
+
+				<div class="block2-txt-child2 flex-r p-t-3">
+	<button (click)="ajouterAuPanier2(article)" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  js-show-cart">
+	  <i class="zmdi zmdi-shopping-cart"></i>
+	</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<!--
+		<img class="test-popup-link" src="assets/images/banner-03.jpg">Open popup</img>
+	
+-->
+
+
+
+
+
+
+
+		<!--
+			**********************************************
+			*************************************
+			*******************************************************
+			***************************
+			*****************************
+			***************
+		-->
+		<!--
+			<ngx-slick-carousel class="carousel" 
+		#slickModal="slick-carousel" 
+		[config]="slideConfig" 
+		(init)="slickInit($event)"
+		(breakpoint)="breakpoint($event)"
+		(afterChange)="afterChange($event)"
+		(beforeChange)="beforeChange($event)">
+<div ngxSlickItem *ngFor="let slide of slides" class="slide">
+<img src="{{ slide.img }}" alt="" width="100%">
+</div>
+</ngx-slick-carousel>
+
+<button (click)="addSlide()">Add</button>
+<button (click)="removeSlide()">Remove</button>
+<button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
+<button (click)="slickModal.unslick()">unslick</button>
+
+		-->
+
+
+	<!--
+		salut a tous
+			**********************************************
+			*************************************
+			*******************************************************
+			***************************
+			*****************************
+			***************
+		-->
+<!--
+
+
+		<div id="slider">
+			<figure>
+				<img src="http://placehold.it/350x150/000000">
+				<img src="http://placehold.it/350x150/111111">
+				<img src="http://placehold.it/350x150/333333">
+				<img src="http://placehold.it/350x150/666666">
+			
+			</figure>
+		</div>
+-->
+
+		<!--
+	<div class="container">
+	<div class="sticky-nav-wrapper">
+	  <nav class="sticky-nav" ngStickyNav stickyClass="sticky-box-shadow" ngStickyNav>
+	  <ul>
+	  <li>
+	  Home
+	  </li>
+	   <li>
+	  About Us
+	  </li>
+	   <li>
+	  Contact
+	  </li>
+	  </ul>
+	  </nav>
+	</div>
+
+-->
+
+
+	<!-- Header -->
+
+	

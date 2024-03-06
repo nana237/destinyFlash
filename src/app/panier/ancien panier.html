@@ -1,0 +1,105 @@
+<button mat-raised-button color = "accent" (click)="showFormCreer()">Ajouter un panier</button>
+<div *ngIf="formVisible">
+<form id="form">
+    <h1> {{labelDuForm}} {{selectedpanier.id}}</h1>
+    <div *ngIf="idVisible">
+        <label for="id">
+            id
+        </label>
+        <input type="text" id="id" [(ngModel)]="selectedpanier.id" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="libPanier">
+            libelé
+        </label>
+        <input type="text" id="libPanier" [(ngModel)]="selectedpanier.libPanier" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+        <label for="client">
+            client
+        </label>
+<!--
+        <input type="text" id="client" [(ngModel)]="selectedpanier.client" [ngModelOptions]="{standalone: true}">
+
+-->        <select  name="client" id="client" [(ngModel)]="selectedpanier.client" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let client of clients" value="{{client.id}}">{{client.nomC}} {{client.prenomC}}</option>
+        </select>
+    </div>
+
+    <button *ngIf="modifierVisible" (click)="modifierPanier()" mat-raised-button color = "accent">Modifier</button>
+    <button *ngIf="annulerVisible" (click)="annulerModif()" mat-raised-button >Annuler</button>
+    <button *ngIf="creerVisible" (click)="creerPanier()" mat-raised-button color = "accent">Ajouter</button>
+</form>
+</div>
+
+<table>
+    <thead>
+        <td>id</td>
+        <td>libelé</td>
+        <td>client</td>
+        <td></td>
+        <td></td>
+    </thead>
+    <tr *ngFor='let panier of paniers'>
+        <td>{{panier.id}}</td>
+        <td>{{panier.libPanier}} </td>
+        <td>{{panier.nomC}} </td>
+        <td><button (click)="showFormModifier(panier)" mat-raised-button color = "accent">modifier</button></td>
+        <td><button (click)="supprimerPanier(panier)" mat-raised-button color = "accent">supprimer</button></td>
+        
+    </tr>
+</table>
+
+
+<div id="choixActuelle" class="  col-sm-4 col-md-6 col-lg-6 " *ngIf="selecteddetail">
+    <img  class="caseImg2" src="http://localhost:8000{{selecteddetail.selectedCaract.photoCaract}}" alt={{selecteddetail.selectedCaract.article2.designationAr}}> 
+    <div class="indicationImg2">
+        {{selecteddetail.selectedCaract.article.designationAr}} {{selecteddetail.selectedCaract.prixCaract}}
+        <div>
+            <label for="qte">quantité</label>
+        <input type="number" name="qte" id="qte" [(ngModel)]="selecteddetail.qte">
+        
+        
+        </div><br>
+        <div>
+            <label for="taille">taille</label>
+        <input type="text" name="taille" id="taille" [(ngModel)]="selecteddetail.taille" >
+
+        </div>
+        <div>
+            <label for="couleur">couleur</label>
+        <input type="text" name="couleur" id="couleur" [(ngModel)]="selecteddetail.couleur" readonly>
+        <img *ngFor="let caract of selecteddetail.caracteristique" (click)="oncolorSelected(caract.couleurCaract)" class="caseImg" src="http://localhost:8000{{caract.photoCaract}}" alt={{caract.couleurCaract}}> 
+    <!--
+            selecteddetail.caracteristique.photoCaract
+    -->
+        </div>
+        <button (click)="modifierChoixActuelle(selecteddetail)" mat-raised-button color = "accent">MODIFIER</button>
+        <br>
+        
+    </div>
+</div>
+
+
+
+
+
+<div *ngIf="boolDetails" id="detail_panier_client" class="  col-sm-8 col-md-6 col-lg-6 ">
+    <h3>voici ce que contient votre panier</h3>
+    <div *ngFor="let detail of details"  (click)="detailSelected(detail)">
+    
+        <img (click)="detailSelected(detail)" class="caseImg" src="http://localhost:8000{{detail.selectedCaract.photoCaract}}" alt={{detail.selectedCaract.article2.designationAr}}> 
+        
+        <div (click)="detailSelected(detail)" class="indicationImg">{{detail.selectedCaract.article2.designationAr}} {{detail.qte}} piece(s) couleur {{detail.couleur}} taille {{detail.taille}}</div>
+        <div style="display: inline-block;">
+            <button (click)="onCommander(detail)" mat-raised-button color = "accent">COMMANDER</button>
+            <button (click)="supprimerDuPanier(detail)" mat-raised-button >RETIRER DU PANIER</button>
+            <button mat-raised-button >Annuler</button>
+        </div>
+        </div>
+
+        <div>
+            <button (click)="onToutCommander(details)" mat-raised-button color = "accent">TOUS COMMANDER</button>
+
+        </div>
+</div>
